@@ -24,10 +24,10 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<Order>>
+    public ResponseEntity<Order>
     getOrderById(@PathVariable Integer id) {
         return ResponseEntity.ok(
-            orderService.getAll());
+            orderService.getById(id));
     }
 
     @PostMapping
