@@ -1,6 +1,8 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.MVC;
 
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.ProductUpdateDto;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.ProductRepository;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Services.ProductService;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,12 @@ import java.util.Optional;
 @RequestMapping("/products")
 public class ProductMVCController {
     private final ProductService service;
+    private final ProductRepository productRepository;
 
-    public ProductMVCController(ProductService service) {
+    public ProductMVCController(ProductService service,
+                                ProductRepository productRepository) {
         this.service = service;
+        this.productRepository = productRepository;
     }
     @GetMapping("/index")
     public String greeting(
@@ -26,7 +31,7 @@ public class ProductMVCController {
             @RequestParam(defaultValue = "ASC", required = false) String sort,
             Model model
     ) {
-        model.addAttribute("products", service.getProduct(description, page, size, sort));
+        model.addAttribute("products", service.getAll());
         model.addAttribute("sort", sort);
         model.addAttribute("description", description);
         return "products";
@@ -45,18 +50,16 @@ public class ProductMVCController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id, Model model) {
-        service.deleteProduct(id);
+        service.deleteById(id);
         return "redirect:/products/index";
     }
 
 
     @PostMapping("/create-or-update")
     public String saveCreateForm(@RequestParam Optional<Integer> id, @ModelAttribute Product product , Model model) {
-        try {
-            service.createOrUpdateProduct(id.isPresent() ? id.get() : null, product);
-        } catch (Exception e) {
-            throw new HttpClientErrorException(HttpStatusCode.valueOf(400), e.getMessage());
-        }
+
+            service.create(productRepository.save(product));
+
 
         return "redirect:/products/index";
     }

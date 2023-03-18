@@ -2,6 +2,7 @@ package gr.kariera.MindTheCode.SecondProject.SecondProject.Services;
 
 import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.ProductUpdateDto;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
+
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,10 +40,10 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void update(Integer id, ProductUpdateDto productUpdateDto) {
-        Product product = productRepository.findById(id).orElseThrow();
-        product.setPrice(productUpdateDto.getPrice());
-        product.setName(productUpdateDto.getName());
-        productRepository.save(product);
+    public void update(Integer id, Product product) {
+        Product product1 = productRepository.findById(id).orElseThrow();
+        product1.setPrice(product.getPrice());
+        product1.setName(product.getName());
+        productRepository.save(product1);
     }
 }
