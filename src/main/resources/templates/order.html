@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Products</a>
+        <a class="navbar-brand" href="#">Orders</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,7 +34,7 @@
         <div class="col-3" style="margin-left:60px;">
             <form id="new-product" method="post" th:attr="action=@{/products}">
                 <button class="w-50 btn btn-primary btn-lg bg-success border border-success " type="submit"
-                        form="new-product" >New Product</button>
+                        form="new-product" >New Order</button>
             </form>
         </div>
         <div class="col-3 mt-1" style="padding-right:80px;">
@@ -56,14 +56,16 @@
     <table class="persons">
         <tr>
             <th class="col-1">#</th>
-            <th class="col-4">Product Name</th>
-            <th class="col-2">Price</th>
-            <th class="col-3">Options</th>
+            <th class="col-3">Address</th>
+            <th class="col-3">Product</th>
+            <th class="col-1">Quantity</th>
+            <th class="col-2">Options</th>
         </tr>
 
         <tr th:each="person, iterator : ${persons}" th:if="${not #lists.isEmpty(persons)}">
             <td th:text="${iterator.index + 1}" th:onclick="|studentInfo('${student.id}');|"></td>
             <td th:text="${person.name}" th:onclick="|studentInfo('${student.id}');|"></td>
+            <td></td>
             <td th:text="${student.lastName}" th:onclick="|studentInfo('${student.id}');|"></td>
             <td >
 
@@ -82,4 +84,4 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 </body>
-</html>
+</html>>
