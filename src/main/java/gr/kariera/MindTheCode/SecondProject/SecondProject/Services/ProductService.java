@@ -1,17 +1,18 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.Services;
 
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.ProductUpdateDto;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
-import org.springframework.data.domain.Page;
 
-public interface  ProductService {
-    public abstract Product createOrUpdateProduct(Integer id, Product product) throws Exception;
-    public abstract void deleteProduct(Integer id);
-    public abstract Page<Product> getProduct(
-            String description,
-            int page,
-            int size,
-            String sort
-    );
+import java.util.List;
 
-    public abstract Product getById(Integer id);
+public interface ProductService {
+    Product create(Product product);
+
+    Product getById(Integer id);
+
+    List<Product> getAll();
+
+    void deleteById(Integer id);
+
+    void update(Integer id, ProductUpdateDto productUpdateDto);
 }

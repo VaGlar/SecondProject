@@ -1,40 +1,37 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.Entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
-
 
 @Entity
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    public Collection<OrderProduct> getOrderProducts() {
-        return orderProducts;
-    }
+    private String name;
 
-    public void setOrderProducts(Collection<OrderProduct> orderProducts) {
-        this.orderProducts = orderProducts;
-    }
+    private BigDecimal price;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonIgnore
-    private Collection<OrderProduct> orderProducts = new ArrayList<>();
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getPrice() {
@@ -44,17 +41,4 @@ public class Product {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    private BigDecimal price;
-
-    private String description;
-
 }

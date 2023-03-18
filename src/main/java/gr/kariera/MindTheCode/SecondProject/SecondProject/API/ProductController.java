@@ -1,73 +1,46 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.API;
 
-
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.ProductUpdateDto;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
-import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.ProductRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatusCode;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.Services.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping("/products")
 public class ProductController {
+    private final ProductService productService;
 
-    private final ProductRepository repo;
-
-    public ProductController(ProductRepository repo) {
-        this.repo = repo;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    @PutMapping("/products/{id}")
-    public Product update(@PathVariable Integer id, @RequestBody Product product) {
-        if (!id.equals(product.getId())) {
-            throw new HttpClientErrorException(HttpStatusCode.valueOf(400), "id in path does not patch id in body");
-        }
-        return repo.save(product);
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
+        return ResponseEntity.ok(productService.getById(id));
     }
 
-    @PostMapping("/products")
-    public Product newPerson(@RequestBody Product product) {
-        return repo.save(product);
+    @GetMapping
+    public ResponseEntity<List<Product>> getAllProduct() {
+        return ResponseEntity.ok(productService.getAll());
     }
 
-    @GetMapping("/products/{id}")
-    public Product one(@PathVariable Integer id) {
-        return repo.findById(id)
-                .orElseThrow();
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        return new ResponseEntity<>(productService.create(product), HttpStatus.CREATED);
     }
 
-    @GetMapping("/products")
-    public Page<Product> all(
-            @RequestParam(required = false) String description,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "3") int size,
-            @RequestParam(defaultValue = "ASC", required = false) String sort
-    ) {
-
-        PageRequest paging = PageRequest
-                .of(page, size)
-                .withSort(sort.equalsIgnoreCase("ASC") ?
-                        Sort.by("description").ascending() :
-                        Sort.by("description").descending());
-
-        Page<Product> res;
-        if (description == null) {
-            res = repo.findAll(paging);
-        } else {
-            res = repo.findByDescriptionContainingIgnoreCase(description, paging);
-        }
-
-        return res;
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable Integer id) {
+        productService.deleteById(id);
     }
 
-    @DeleteMapping("/products/{id}")
-    public void delete(@PathVariable Integer id) {
-        Product match = repo.findById(id)
-                .orElseThrow();
-        repo.delete(match);
+    @PostMapping("/{id}")
+    public void updateProduct(@PathVariable Integer id,@RequestBody ProductUpdateDto productUpdateDto) {
+
+        productService.update(id, productUpdateDto);
     }
 }
-
