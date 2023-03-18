@@ -1,6 +1,6 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.Services;
 
-import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.NewOrderDto;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.OrderUpdateDto;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Order;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -39,9 +39,9 @@ public class OrderServiceImpl implements OrderService{
         }
 
         @Override
-        public void update(Integer id, NewOrderDto newOrderDto) {
+        public void update(Integer id, OrderUpdateDto orderUpdateDto) {
             Order order = orderRepository.findById(id).orElseThrow();
-            order.setAddress(newOrderDto.getAddress());
+            order.setAddress(orderUpdateDto.getAddress());
             orderRepository.save(order);
         }
     }

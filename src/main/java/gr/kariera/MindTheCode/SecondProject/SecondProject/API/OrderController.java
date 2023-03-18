@@ -1,6 +1,6 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.API;
 
-import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.NewOrderDto;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.OrderUpdateDto;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Order;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Services.OrderService;
 import org.springframework.http.HttpStatus;
@@ -35,8 +35,8 @@ public class OrderController {
         return new ResponseEntity<>(orderService.create(order), HttpStatus.CREATED);
     }
     @PostMapping("/{id}")
-    public void updateOrder(@PathVariable Integer id, @RequestBody NewOrderDto newOrderDto){
-        orderService.update(id, newOrderDto);
+    public void updateOrder(@PathVariable Integer id, @RequestBody OrderUpdateDto orderUpdateDto){
+        orderService.update(id, orderUpdateDto);
     }
 
     @DeleteMapping("/{id}")
