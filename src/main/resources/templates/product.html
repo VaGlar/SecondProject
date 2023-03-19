@@ -61,10 +61,10 @@
             <th class="col-3">Options</th>
         </tr>
 
-        <tr th:each="person, iterator : ${persons}" th:if="${not #lists.isEmpty(persons)}">
-            <td th:text="${iterator.index + 1}" th:onclick="|studentInfo('${student.id}');|"></td>
-            <td th:text="${person.name}" th:onclick="|studentInfo('${student.id}');|"></td>
-            <td th:text="${student.lastName}" th:onclick="|studentInfo('${student.id}');|"></td>
+        <tr th:each="product, iStat : ${products}" th:if="${not #lists.isEmpty(products)}">
+            <td th:text="${iStat.index + 1}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
             <td class="container">
                 <div class="row">
                     <div class="col" style="margin-left:120px;">
