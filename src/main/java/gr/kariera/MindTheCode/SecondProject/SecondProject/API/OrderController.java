@@ -37,7 +37,7 @@ public class OrderController {
         return new ResponseEntity<>(orderService.create(createOrderWrapper), HttpStatus.CREATED);
     }
     @PostMapping("/{id}")
-    public void updateOrder(@PathVariable Integer id, @RequestBody OrderUpdateDto orderUpdateDto){
+    public void updateOrder(@PathVariable Integer id, @RequestBody Order orderUpdateDto){
         orderService.update(id, orderUpdateDto);
     }
 

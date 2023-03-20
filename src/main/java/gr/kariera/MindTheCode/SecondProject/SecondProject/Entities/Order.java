@@ -18,6 +18,8 @@ public class Order {
 
         private BigDecimal totalPrice;
 
+
+
         @OneToMany(cascade = CascadeType.ALL)
         @JoinColumn(name = "orders_id", referencedColumnName = "id")
         Set<OrderProduct> orderProduct= new HashSet<>();

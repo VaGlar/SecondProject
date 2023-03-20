@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     @PostMapping("/{id}")
-    public void updateProduct(@PathVariable Integer id,@RequestBody ProductUpdateDto productUpdateDto) {
+    public void updateProduct(@PathVariable Integer id,@RequestBody Product productUpdateDto) {
 
         productService.update(id, productUpdateDto);
     }

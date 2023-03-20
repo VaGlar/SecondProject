@@ -16,11 +16,6 @@ public class NewOrderDto implements Serializable {
     }
 
     private Double discountPercentage;
-    private Collection<ProductWithQuantityDto> products;
-
-    public NewOrderDto() {
-        this.products = new ArrayList<>();
-    }
 
 
     public String getAddress() {
@@ -31,11 +26,5 @@ public class NewOrderDto implements Serializable {
         this.address = address;
     }
 
-    public Collection<ProductWithQuantityDto> getProducts() {
-        return products;
-    }
 
-    public void setProducts(Collection<ProductWithQuantityDto> products) {
-        this.products = products;
-    }
 }

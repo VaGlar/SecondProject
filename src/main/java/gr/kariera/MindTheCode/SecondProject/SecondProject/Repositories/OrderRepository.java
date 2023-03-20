@@ -1,5 +1,6 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories;
 
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.CreateOrderWrapper;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

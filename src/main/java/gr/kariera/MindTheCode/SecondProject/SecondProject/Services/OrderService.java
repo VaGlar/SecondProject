@@ -17,6 +17,6 @@ public interface OrderService {
 
     void deleteById(Integer id);
 
-    void update(Integer id, OrderUpdateDto orderUpdateDto);
+    void update(Integer id, Order orderUpdateDto);
 }
 

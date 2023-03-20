@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService{
         }
 
         @Override
-        public void update(Integer id, OrderUpdateDto orderUpdateDto) {
+        public void update(Integer id, Order orderUpdateDto) {
             Order order = orderRepository.findById(id).orElseThrow();
             order.setAddress(orderUpdateDto.getAddress());
             orderRepository.save(order);
