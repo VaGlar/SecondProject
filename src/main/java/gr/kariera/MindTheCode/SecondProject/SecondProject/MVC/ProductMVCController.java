@@ -58,7 +58,7 @@ public class ProductMVCController {
     @PostMapping("/create-or-update")
     public String saveCreateForm(@RequestParam Optional<Integer> id, @ModelAttribute Product product , Model model) {
 
-            service.create(productRepository.save(product));
+        service.create(productRepository.save(product));
 
 
         return "redirect:/products/index";
