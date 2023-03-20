@@ -26,13 +26,17 @@ public class OrderServiceImpl implements OrderService{
         public Order create(CreateOrderWrapper createOrderWrapper) {
             Order order = new Order();
             BigDecimal tp =new BigDecimal(0);
+            if(createOrderWrapper.orderProductSet!=null){
+
+
             for(OrderProduct dto : createOrderWrapper.orderProductSet) {
                 Product product = productRepository.findById(dto.getProductId()).orElseThrow();
                 tp = tp.add(product.getPrice().multiply(dto.getQuantity()));
             }
             order.setTotalPrice(tp);
+
+            order.setOrderProduct(createOrderWrapper.orderProductSet);}
             order.setAddress(createOrderWrapper.getAddress());
-            order.setOrderProduct(createOrderWrapper.orderProductSet);
             return orderRepository.save(order);
         }
         @Override
