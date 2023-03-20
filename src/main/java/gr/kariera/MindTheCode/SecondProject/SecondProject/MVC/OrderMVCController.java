@@ -1,5 +1,6 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.MVC;
 
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.CreateOrderWrapper;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.NewOrderDto;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Order;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
@@ -45,11 +46,8 @@ public class OrderMVCController {
     }
 
     @PostMapping("/create-or-update")
-    public String saveCreateForm(@RequestParam Optional<Integer> id, @ModelAttribute Order order , Model model) {
-
-
-        service.create(orderRepository.save(order));
-
+    public String saveCreateForm(@RequestParam Optional<Integer> id, @ModelAttribute CreateOrderWrapper order  , Model model) {
+        orderRepository.save(service.create(order));
 
         return "redirect:/orders/index";
     }

@@ -99,41 +99,41 @@
 
         </tbody>
 
-<!--    </table>-->
-<!--    <div class="row justify-content-between" th:if="${product.getTotalPages() < 0}">-->
-<!--        <div class="col-3">-->
-<!--            <span th:text="${'Now on ' + (products.getNumber()+1) + ' from total ' + products.getTotalPages() + ' pages'}"></span>-->
-<!--        </div>-->
-<!--        <div class="col-3 d-flex justify-content-end">-->
-<!--            <nav>-->
-<!--                <ul class="pagination">-->
-<!--                    <li class="page-item" th:classappend="${products.getNumber() == 0}? 'disabled'"><a class="page-link" th:href="@{/products/index(page=${products.getNumber()-1})}">Previous</a></li>-->
+        <!--    </table>-->
+        <!--    <div class="row justify-content-between" th:if="${product.getTotalPages() < 0}">-->
+        <!--        <div class="col-3">-->
+        <!--            <span th:text="${'Now on ' + (products.getNumber()+1) + ' from total ' + products.getTotalPages() + ' pages'}"></span>-->
+        <!--        </div>-->
+        <!--        <div class="col-3 d-flex justify-content-end">-->
+        <!--            <nav>-->
+        <!--                <ul class="pagination">-->
+        <!--                    <li class="page-item" th:classappend="${products.getNumber() == 0}? 'disabled'"><a class="page-link" th:href="@{/products/index(page=${products.getNumber()-1})}">Previous</a></li>-->
 
-<!--                    <li class="page-item" th:if="${products.getNumber() > 0}">-->
-<!--                        <a class="page-link" th:href="@{/products/index(page=${products.getNumber()-1})}" th:text="${products.getNumber()}"></a>-->
-<!--                    </li>-->
+        <!--                    <li class="page-item" th:if="${products.getNumber() > 0}">-->
+        <!--                        <a class="page-link" th:href="@{/products/index(page=${products.getNumber()-1})}" th:text="${products.getNumber()}"></a>-->
+        <!--                    </li>-->
 
-<!--                    <li class="page-item active">-->
-<!--                        <a class="page-link" href="#" th:text="${products.getNumber()+1}"></a>-->
-<!--                    </li>-->
+        <!--                    <li class="page-item active">-->
+        <!--                        <a class="page-link" href="#" th:text="${products.getNumber()+1}"></a>-->
+        <!--                    </li>-->
 
-<!--                    <li class="page-item" th:if="${products.getNumber() < products.getTotalPages() - 1}">-->
-<!--                        <a class="page-link" th:href="@{/products/index(page=${products.getNumber()+1})}" th:text="${products.getNumber()+2}"></a>-->
-<!--                    </li>-->
+        <!--                    <li class="page-item" th:if="${products.getNumber() < products.getTotalPages() - 1}">-->
+        <!--                        <a class="page-link" th:href="@{/products/index(page=${products.getNumber()+1})}" th:text="${products.getNumber()+2}"></a>-->
+        <!--                    </li>-->
 
-<!--                    <li class="page-item" th:classappend="${products.getNumber() == products.getTotalPages() - 1}? 'disabled'">-->
-<!--                        <a class="page-link" th:href="@{/products/index(page=${products.getNumber()+1})}">Next</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </nav>-->
-<!--        </div>-->
-<!--    </div>-->
+        <!--                    <li class="page-item" th:classappend="${products.getNumber() == products.getTotalPages() - 1}? 'disabled'">-->
+        <!--                        <a class="page-link" th:href="@{/products/index(page=${products.getNumber()+1})}">Next</a>-->
+        <!--                    </li>-->
+        <!--                </ul>-->
+        <!--            </nav>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
 
-<!--    <div class="row" th:unless="${products.getTotalPages() > 0}">-->
-<!--        <div class="col text-center"><span>No Data</span></div>-->
+        <!--    <div class="row" th:unless="${products.getTotalPages() > 0}">-->
+        <!--        <div class="col text-center"><span>No Data</span></div>-->
 
-<!--    </div>-->
+        <!--    </div>-->
 
 </main>
 </body>

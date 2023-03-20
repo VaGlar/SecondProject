@@ -1,58 +1,35 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.Entities;
 
-
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Lazy;
+
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Order_Product")
 public class OrderProduct {
-    @EmbeddedId
-    private OrderProductPK id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer id;
+    private Integer productId;
+    private BigDecimal quantity;
 
-    @ManyToOne
-    @Lazy(false)
-    @MapsId("order_id")
-    private Order order;
-
-    @ManyToOne
-    @Lazy(false)
-    @MapsId("product_id")
-    private Product product;
-
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
+    public OrderProduct(Integer productId, BigDecimal quantity) {
+        this.productId = productId;
         this.quantity = quantity;
     }
 
-    private Integer quantity;
-    public OrderProduct() {}
-
-    public OrderProductPK getId() {
-        return id;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setId(OrderProductPK id) {
-        this.id = id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public Order getOrder() {
-        return order;
+    public BigDecimal getQuantity() {
+        return quantity;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
     }
 }
