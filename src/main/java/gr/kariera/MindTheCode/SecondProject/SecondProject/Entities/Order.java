@@ -1,10 +1,13 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.Entities;
 
+import gr.kariera.MindTheCode.SecondProject.SecondProject.MVC.OrderMVCController;
 import jakarta.persistence.*;
 import net.minidev.json.annotate.JsonIgnore;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -65,4 +68,21 @@ public class Order {
                 }
                 return a.toString();
         }
+        public String getProductQuantity(){
+                StringBuilder a = new StringBuilder();
+                for(OrderProduct ap:getOrderProduct()){
+                        a.append(" ").append(ap.getQuantity());
+                }
+                return a.toString();
+        }
+
+
+
+
+
+
+
+
+
+
 }

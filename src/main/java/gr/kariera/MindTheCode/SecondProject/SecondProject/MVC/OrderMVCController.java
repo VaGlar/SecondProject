@@ -75,6 +75,7 @@ public class OrderMVCController {
                 orderRepository.save(a);
                 model.addAttribute("products",findProductsInOrder(a));
 
+
                 return "redirect:/orders/index";
             }
         }
