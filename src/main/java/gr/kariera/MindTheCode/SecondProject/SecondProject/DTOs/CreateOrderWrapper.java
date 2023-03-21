@@ -1,7 +1,9 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs;
 
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.OrderProduct;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
 
+import java.util.List;
 import java.util.Set;
 
 public class CreateOrderWrapper {
@@ -10,7 +12,15 @@ public class CreateOrderWrapper {
 
         public Set<OrderProduct> orderProductSet;
 
-        public String getAddress() {
+
+
+    public CreateOrderWrapper(String address, List<Product> products) {
+        this.address = address;
+    }
+
+
+
+    public String getAddress() {
             return address;
         }
 

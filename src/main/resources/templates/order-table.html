@@ -64,6 +64,25 @@
         <tr th:each="order, iStat: ${orders}">
             <th th:text="${order.id}" scope="row"></th>
             <td th:text="${order.address}"></td>
+            <td th:text="${order.getProductIds()}"></td>
+
+            <!-- mborw na xrisimopoioiw to products apo to mondelo ara  na brw ta onomata   -->
+
+            <td class="container">
+                            <div class="row">
+                                <div class="col" style="margin-left:80px;">
+                                    <form th:action="@{/orders/add-product(orderId=${order.id})}" th:method ="post" th:object="${orderProduct}" >
+                                        <input type="number" placeholder="product" id="productId" name="productId" required />
+                                        <input type="number" placeholder="quantity" id="quantity" name="quantity" required/>
+                                        <button type="submit" class="btn btn-success edit-icon"><i class="fas fa-edit"></i></button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </td>
+
+
+
 
 
 

@@ -18,6 +18,7 @@ public class NewOrderDto implements Serializable {
     private Double discountPercentage;
 
 
+
     public String getAddress() {
         return address;
     }

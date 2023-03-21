@@ -52,7 +52,17 @@ public class Order {
                 return totalPrice;
         }
 
+
         public void setTotalPrice(BigDecimal totalPrice) {
                 this.totalPrice = totalPrice;
+        }
+
+
+        public String getProductIds(){
+                StringBuilder a = new StringBuilder();
+                for(OrderProduct ap:getOrderProduct()){
+                  a.append(" ").append(ap.getProductId());
+                }
+                return a.toString();
         }
 }
