@@ -27,4 +27,9 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public Optional<User> findUserByCredentials(String email,String password){
+
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+
 }
