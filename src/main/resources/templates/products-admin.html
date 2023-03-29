@@ -46,12 +46,12 @@
 <main style=" margin-top: 56px;" class="container pt-5">
 
     <div class="row mt-5">
-<!--        <div class="col-3">-->
-<!--            <form id="new-product" method="get" th:attr="action=@{/products/create}">-->
-<!--                <button class="btn btn-primary" type="submit" form="new-product" >New Product</button>-->
-<!--            </form>-->
+        <div class="col-3">
+            <form id="new-product" method="get" th:attr="action=@{/products/create}">
+                <button class="btn btn-primary" type="submit" form="new-product" >New Product</button>
+            </form>
 
-<!--        </div>-->
+        </div>
         <div class="col-3">
             <form class="d-flex" role="search" th:action="@{/products/index}" th:method="get">
                 <input th:value="${name}" name="name"  class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -75,6 +75,7 @@
             <th scope="col">Product Description</th>
             <th scope="col">Price</th>
             <th scope="col">Stoke</th>
+            <th scope="col">Options</th>
         </tr>
 
         </thead>
@@ -86,27 +87,23 @@
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}">Otto</td>
             <td th:text="${product.stock}">Otto</td>
-<!--            <td>-->
-<!--                <div class="row" style="width:190px;">-->
-<!--                    <div class="col">-->
-<!--                        <form th:action="@{/products/edit/{id}(id=${product.id})}" th:method="get" >-->
-<!--                            <button type="submit" class="btn btn-light">edit</button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                    <div class="col">-->
-<!--                        <form th:action="@{/products/delete/{id}(id=${product.id})}" th:method="post" >-->
-<!--                            <button type="submit" class="btn btn-danger">delete</button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
+            <td>
+                <div class="row" style="width:190px;">
+                    <div class="col">
+                        <form th:action="@{/products/edit/{id}(id=${product.id})}" th:method="get" >
+                            <button type="submit" class="btn btn-light">edit</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form th:action="@{/products/delete/{id}(id=${product.id})}" th:method="post" >
+                            <button type="submit" class="btn btn-danger">delete</button>
+                        </form>
+                    </div>
+                </div>
 
 
-<!--            </td>-->
+            </td>
         </tr>
-        <div>
-           <a href="/orders/create?" >Continue to order
-           </a>
-        </div>
 
         </tbody>
 

@@ -7,6 +7,7 @@ import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.ProductRe
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -37,6 +38,12 @@ public class ProductServiceImpl implements ProductService{
         } catch (Exception e) {
             System.out.println("Could not delete product with id: " + id);
         }
+    }
+
+    @Override
+    public Product findProductById(Integer id) {
+        Optional<Product> opt = productRepository.findById(id);
+        return opt.get();
     }
 
     @Override

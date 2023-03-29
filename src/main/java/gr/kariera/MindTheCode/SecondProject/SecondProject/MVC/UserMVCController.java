@@ -1,6 +1,7 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.MVC;
 
 import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.UserCredentials;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Address;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.User;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.UserRepository;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Services.UserService;
@@ -49,7 +50,7 @@ public class UserMVCController {
     @RequestMapping("/my-profile")
     public String myProfile(Model model,User user) {
         model.addAttribute("user", user);
-        return "myProfile";
+        return "myAddress";
     }
     @RequestMapping(value="/new-user", method=RequestMethod.POST)
     public String newUserPost(@ModelAttribute("user") User user, BindingResult bindingResults,
@@ -109,6 +110,24 @@ public class UserMVCController {
         model.addAttribute("updateSuccess", true);
         model.addAttribute("user", currentUser);
         return "myProfile";
+    }
+    @RequestMapping("/my-address")
+    public String myAddress(Model model, Principal principal) {
+        User user = userService.findByEmail(principal.getName());
+        model.addAttribute("user", user);
+        return "myAddress";
+    }
+
+    @RequestMapping(value="/update-user-address", method=RequestMethod.POST)
+    public String updateUserAddress(@ModelAttribute("user") User user, @ModelAttribute("address") Address address,
+                                    Model model ) throws Exception {
+        User currentUser = userService.findByEmail(user.getEmail());
+//        if(currentUser == null) {
+//            throw new Exception ("User not found");
+//        }
+        currentUser.setAddress(address);
+        userService.save(currentUser);
+        return "redirect:/my-address";
     }
 
 

@@ -2,7 +2,6 @@ package gr.kariera.MindTheCode.SecondProject.SecondProject.Entities;
 
 
 import jakarta.persistence.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -21,8 +20,23 @@ public class Product {
 
     private String picture;
 
-    @OneToMany(mappedBy="product", cascade = CascadeType.ALL, orphanRemoval = true)
+
+
+
+    @ManyToMany (mappedBy="products")
     private Set<Category> categories;
+
+
+    public Product() {
+    }
+
+    public Product(String name, BigDecimal price, int stock, String picture, Set<Category> categories) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.picture = picture;
+        this.categories = categories;
+    }
 
     public boolean hasStock(int amount){
         return (this.getStock()>0)&& (amount<=this.getStock());
@@ -35,6 +49,8 @@ public class Product {
     public Integer getId() {
         return id;
     }
+
+
 
     public void setId(Integer id) {
         this.id = id;

@@ -36,6 +36,20 @@ public class ProductMVCController {
         model.addAttribute("description", description);
         return "products";
     }
+
+    @GetMapping("/admin")
+    public String admin(
+            @RequestParam(required = false) String description,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size,
+            @RequestParam(defaultValue = "ASC", required = false) String sort,
+            Model model
+    ) {
+        model.addAttribute("products", service.getAll());
+        model.addAttribute("sort", sort);
+        model.addAttribute("description", description);
+        return "products-admin";
+    }
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("product",  new Product());

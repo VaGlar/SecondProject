@@ -22,46 +22,69 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navbar">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Create Order</a>
+    <a class="navbar-brand" href="#">Products Page</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="http://localhost:8080/orders/index">Orders</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="http://localhost:8080/products/index">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="http://localhost:8080/products/admin">Admin</a>
+        </li>
+
       </ul>
+
     </div>
-
-
-
   </div>
 </nav>
 
 <div class="content">
 <form class="needs-validation" novalidate="" method="post" th:attr="action=@{/orders/create-or-update(id=${order.id})}"th:object="${order}">
 
-  <div class="mb-3 w-50">
-    <label> Select Product:</label>
-    <select th:field="${products}">
-      <option th:each="product, iStat: ${products}" th:value="${product.name}" th:text="${product.name}">
-      </option>
-    </select>
-<!--    <select class="form-control" id="product" name="product">-->
-<!--      <option value="default">-</option>-->
-<!--      <option value="product1">Product 1</option>-->
-<!--      <option value="product2">Product 2</option>-->
-<!--      <option value="product3">Product 3</option>-->
-<!--    </select>-->
-  </div>
+
 
   <div class="mb-3 w-50">
     <label for="address">Address:</label>
     <input type="text" class="form-control" placeholder="Your address here..." id="address" name="address" required>
+    <div class="col mt-3 mt-md-0">
+      <div class="card">
+        <div class="card-body">
+          <h3>My Address</h3><hr>
+          <form th:action="@{/update-user-address}" method="post">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="billingAddress">Address</label>
+                <input type="text" class="form-control" th:name="streetAddress" th:value="${user?.address?.streetAddress}">
+              </div>
+              <div class="form-group col-6 col-sm-5">
+                <label for="billingCountry">Country</label>
+                <input type="text" class="form-control" th:name="country" th:value="${user?.address?.country}">
+
+              </div>
+              <div class="form-group col-6 col-sm-5">
+                <label for="billingCity">City</label>
+                <input type="text" class="form-control"   th:name="city" th:value="${user?.address?.city}">
+              </div>
+              <div class="form-group col-3 col-sm-2">
+                <label for="billingZip">ZIP Code</label>
+                <input type="number" class="form-control" th:name="zipCode" th:value="${user?.address?.zipCode}">
+              </div>
+            </div>
+
+          </form>
+
+        </div>
   </div>
+
+
 
   <div class="mb-3 w-50">
     <button type="submit" class="w-25 btn btn-primary btn-lg bg-success border border-success justify-center">Submit</button>
@@ -71,64 +94,5 @@
 </form>
 </div>
 
-
-<div>
-<tr th:each="product, iStat: ${products}">
-  <th th:text="${product.id}" scope="row"></th>
-  <td th:text="${product.name}"></td>
-  <td th:text="${product.price}">Otto</td>
-  <td>
-    <div class="row" style="width:190px;">
-      <div class="col">
-        <form th:action="@{/products/edit/{id}(id=${product.id})}" th:method="get" >
-          <button type="submit" class="btn btn-light">Add</button>
-        </form>
-      </div>
-      <div class="col">
-        <form th:action="@{/products/delete/{id}(id=${product.id})}" th:method="post" >
-          <button type="submit" class="btn btn-danger">Remove</button>
-        </form>
-      </div>
-    </div>
-
-
-  </td>
-</tr>
-</div>
-
-<!--<div class="mb-3 w-50">-->
-<!--  <label for="product">Select Product:</label>-->
-<!--  <select class="form-control" id="product" name="product">-->
-<!--    <option value="default">-</option>-->
-<!--    <option value="product1">Product 1</option>-->
-<!--    <option value="product2">Product 2</option>-->
-<!--    <option value="product3">Product 3</option>-->
-<!--  </select>-->
-<!--</div>-->
-
-
-<!--<div>-->
-<!--  <tr th:each="product, iStat: ${orderProduct}">-->
-<!--    <th th:text="${product.id}" scope="row"></th>-->
-<!--    <td th:text="${product.name}"></td>-->
-<!--    <td th:text="${product.price}">Otto</td>-->
-<!--    <td>-->
-<!--      <div class="row" style="width:190px;">-->
-<!--        <div class="col">-->
-<!--          <form th:action="@{/products/edit/{id}(id=${product.id})}" th:method="get" >-->
-<!--            <button type="submit" class="btn btn-light">Add</button>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--        <div class="col">-->
-<!--          <form th:action="@{/products/delete/{id}(id=${product.id})}" th:method="post" >-->
-<!--            <button type="submit" class="btn btn-danger">Remove</button>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
-
-
-<!--    </td>-->
-<!--  </tr>-->
-<!--</div>-->
 </body>
 </html>
