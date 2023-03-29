@@ -68,6 +68,7 @@
             <th scope="col">#</th>
             <th scope="col">Product Description</th>
             <th scope="col">Price</th>
+            <th scope="col">Stoke</th>
             <th scope="col">Options</th>
         </tr>
 
@@ -79,6 +80,7 @@
             <th th:text="${product.id}" scope="row"></th>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}">Otto</td>
+            <td th:text="${product.stock}">Otto</td>
             <td>
                 <div class="row" style="width:190px;">
                     <div class="col">

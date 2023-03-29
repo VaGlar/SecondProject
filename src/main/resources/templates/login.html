@@ -70,19 +70,43 @@
                                 <div class="form-group">
                                     <div class="input-icon">
                                         <i data-feather="user"></i>
-                                        <input required="required" type="text" class="form-control" th:classappend="${usernameExists} ? is-invalid"
-                                               placeholder="Username" name="username" th:value="${username}">
+                                        <input required="required" type="text" class="form-control"
+                                               placeholder="First Name" name="firstName" th:value="${firstName}">
                                         <div class="invalid-feedback">Username is already in use</div>
 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-icon">
-                                        <i data-feather="lock"></i> <input type="password" required="required"
-                                                                           class="form-control" name="new-password"
-                                                                           placeholder="Password" autocomplete="new-password">
+                                        <i data-feather="user"></i>
+                                        <input required="required" type="text" class="form-control"
+                                               placeholder="Last Name" name="lastName" th:value="${lastName}">
+                                        <div class="invalid-feedback">Username is already in use</div>
+
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="input-icon">
+                                        <i data-feather="lock"></i>
+                                        <input required="required" type="password" class="form-control"
+                                               placeholder="Password" name="password" th:value="${password}">
+<!--                                        <input type="password" required="required"-->
+<!--                                                                           class="form-control" name="new-password"-->
+<!--                                                                           placeholder="Password" autocomplete="new-password"-->
+<!--                                               th:value="${password}"-->
+<!--                                        >-->
+                                    </div>
+                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <div class="input-icon">-->
+<!--&lt;!&ndash;                                        <i data-feather="user"></i>&ndash;&gt;-->
+<!--                                        <input required="required" type="text" class="form-control" th:classappend="${usernameExists} ? is-invalid"-->
+<!--                                               placeholder="Username" name="username" th:value="${firstName}">-->
+<!--                                        <div class="invalid-feedback">Username is already in use</div>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+
                                 <button type="submit"
                                         class="btn btn-outline-primary btn-block">REGISTER</button>
                             </form>
