@@ -49,10 +49,9 @@ public class OrderMVCController {
        List<OrdersWithProductsDetails> orders = service.getAll().stream().map(s -> new OrdersWithProductsDetails(s, service.findOrdersProduct(s))).collect(Collectors.toList());
 
         model.addAttribute("orders", orders);
-//        model.addAttribute("orders",service.getAll());
         model.addAttribute("sort", sort);
         model.addAttribute("addresses", address);
-//        model.addAttribute("totalPrice",service.calculateTotalPrice());
+
 
         return "order-table";
     }
