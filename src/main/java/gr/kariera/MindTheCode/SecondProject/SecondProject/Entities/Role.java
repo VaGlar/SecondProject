@@ -10,6 +10,12 @@ public class Role {
     @Id
     private String type;
 
+    public Role(String type) {
+        this.type = type;
+    }
+
+    public Role() {
+    }
 
     public String getType() {
         return type;

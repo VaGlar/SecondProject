@@ -6,11 +6,11 @@ import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
 import java.util.List;
 import java.util.Set;
 
-public class CreateOrderWrapper {
+public class CreateOrderWrapper  {
 
-        public String address;
+    public String address;
 
-        public Set<OrderProduct> orderProductSet;
+    public Set<OrderProduct> orderProductSet;
 
 
 
@@ -20,19 +20,18 @@ public class CreateOrderWrapper {
 
 
 
-    public String getAddress() {
-            return address;
-        }
+   public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-        public void setAddress(String address) {
-            this.address = address;
-        }
+    public Set<OrderProduct> getOrderProductDtoSet() {
+        return orderProductSet;
+    }
 
-        public Set<OrderProduct> getOrderProductDtoSet() {
-            return orderProductSet;
-        }
-
-        public void setOrderProductDtoSet(Set<OrderProduct> orderProductSet) {
-            this.orderProductSet = orderProductSet;
-        }
+    public void setOrderProductDtoSet(Set<OrderProduct> orderProductSet) {
+        this.orderProductSet = orderProductSet;
+    }
 }

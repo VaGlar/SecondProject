@@ -2,8 +2,10 @@ package gr.kariera.MindTheCode.SecondProject.SecondProject.Config;
 
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Category;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Role;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.CategoryRepository;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.ProductRepository;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.RoleRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +20,12 @@ public class ProjectInitConfig {
 
     private final CategoryRepository categoryRepository;
 
-    public ProjectInitConfig(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    private final RoleRepository roleRepository;
+
+    public ProjectInitConfig(ProductRepository productRepository, CategoryRepository categoryRepository, RoleRepository roleRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.roleRepository = roleRepository;
     }
 
 
@@ -29,6 +34,9 @@ public class ProjectInitConfig {
     public  void createInitialProduct(){
         Category save1 = categoryRepository.save(new Category("food"));
         Category save2 = categoryRepository.save(new Category("furniture"));
+
+        Role role1 = roleRepository.save(new Role("admin"));
+        Role role2 = roleRepository.save(new Role("user"));
 
 
         List<Product> productList = List.of(new Product("chocolate", BigDecimal.valueOf(10),4,"chocolate.png",Set.of(new Category("food"))),
