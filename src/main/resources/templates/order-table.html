@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Products Page</a>
+        <a class="navbar-brand" href="#">Orders Page</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -66,6 +66,7 @@
             <th class="col-3">Address</th>
             <th class="col-3">Product</th>
             <th class="col-3">Quantity</th>
+            <th class="col-3">TotalPrice</th>
             <th class="col-3">Options</th>
         </tr>
 
@@ -74,6 +75,7 @@
             <td th:text="${order.address}"></td>
             <td th:text="${order.getProductIds()}"></td>
             <td th:text="${order.getProductQuantity()}"></td>
+            <td th:text="${order.totalPrice}"></td>
 
 
 

@@ -37,6 +37,7 @@ public class OrderMVCController {
     @GetMapping("/index")
     public String greeting(
             @RequestParam(required = false) String address,
+            @RequestParam(required = false) BigDecimal totalPrice,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size,
             @RequestParam(defaultValue = "ASC", required = false) String sort,
@@ -45,6 +46,7 @@ public class OrderMVCController {
         model.addAttribute("orders", service.getAll());
         model.addAttribute("sort", sort);
         model.addAttribute("addresses", address);
+        model.addAttribute("totalPrice",totalPrice);
         return "order-table";
     }
 
