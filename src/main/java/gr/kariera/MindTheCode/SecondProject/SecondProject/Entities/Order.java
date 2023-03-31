@@ -27,6 +27,16 @@ public class Order {
         @JoinColumn(name = "orders_id", referencedColumnName = "id")
         Set<OrderProduct> orderProduct= new HashSet<>();
 
+        public Order() {
+        }
+
+        public Order(Integer id, String address, BigDecimal totalPrice, Set<OrderProduct> orderProduct) {
+                this.id = id;
+                this.address = address;
+                this.totalPrice = totalPrice;
+                this.orderProduct = orderProduct;
+        }
+
         public String getAddress() {
                 return address;
         }
@@ -71,19 +81,10 @@ public class Order {
         public String getProductQuantity(){
                 StringBuilder a = new StringBuilder();
                 for(OrderProduct ap:getOrderProduct()){
-                        a.append(" ").append(ap.getQuantity());
+                        a.append(ap.getQuantity().intValue()).append(", ");
                 }
                 return a.toString();
         }
-
-
-
-
-
-
-
-
-
 
 
 

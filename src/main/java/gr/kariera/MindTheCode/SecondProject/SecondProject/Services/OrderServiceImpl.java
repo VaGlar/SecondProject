@@ -10,7 +10,9 @@ import gr.kariera.MindTheCode.SecondProject.SecondProject.Repositories.ProductRe
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -65,5 +67,25 @@ public class OrderServiceImpl implements OrderService{
             order.setAddress(orderUpdateDto.getAddress());
             orderRepository.save(order);
         }
+
+    @Override
+    public BigDecimal calculateTotalPrice(Order a) {
+            BigDecimal tp = BigDecimal.valueOf(0);
+            for( OrderProduct o: a.getOrderProduct()){
+                tp=tp.add(productRepository.findById(o.getProductId()).orElseThrow(()-> new  RuntimeException()).getPrice().multiply(o.getQuantity())) ;
+
+            }
+            return tp;
+
     }
+    @Override
+    public List<Product> findOrdersProduct(Order order){
+            List<Product> products = new ArrayList<>();
+            order.getOrderProduct().forEach(s -> {
+                Optional<Product> productOptional =productRepository.findById(s.getProductId());
+                productOptional.ifPresent(products::add);
+            });
+            return  products;
+    }
+}
 

@@ -73,7 +73,11 @@
         <tr th:each="order, iStat: ${orders}">
             <th th:text="${order.id}" scope="row"></th>
             <td th:text="${order.address}"></td>
-            <td th:text="${order.getProductIds()}"></td>
+            <td th:text="${order.getProductsNames()}"></td>
+<!--            <td th:each="product, iterStat:${order.productList}"-->
+<!--                  th:with="productsNames=${product.name} + ','"-->
+<!--                  th:text="${productsNames}">-->
+<!--                </td>-->
             <td th:text="${order.getProductQuantity()}"></td>
             <td th:text="${order.totalPrice}"></td>
 
@@ -89,8 +93,8 @@
                                 <div class="col" style="margin-left:80px;">
                                     <form th:action="@{/orders/add-product(orderId=${order.id})}" th:method ="post" th:object="${orderProduct}" >
                                         <label> Select Product:</label>
-                                        <input type="number" placeholder="product" id="productId" name="productId" required />
-                                        <input type="number" placeholder="quantity" id="quantity" name="quantity" required/>
+                                        <input type="number" min="0" placeholder="product" id="productId" name="productId" required />
+                                        <input type="number" min="0" placeholder="quantity" id="quantity" name="quantity" required/>
                                         <button type="submit" class="btn btn-success edit-icon"><i class="fas fa-edit"></i></button>
                                     </form>
                                 </div>

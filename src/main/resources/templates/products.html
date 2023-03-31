@@ -87,7 +87,7 @@
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}">Otto</td>
             <td th:text="${product.stock}">Otto</td>
-            <td th:text="${product.picture}">Otto</td>
+            <td ><img th:src="@{'/resources/pictures/'+ ${product.picture}}" /></td>
 <!--            <td>-->
 <!--                <div class="row" style="width:190px;">-->
 <!--                    <div class="col">-->
@@ -105,10 +105,7 @@
 
 <!--            </td>-->
         </tr>
-        <div>
-           <a href="/orders/create?" >Continue to order
-           </a>
-        </div>
+
 
         </tbody>
 
@@ -149,6 +146,11 @@
         <!--    </div>-->
 
     </table>
+
+    <div>
+        <a class="btn btn-outline-success"  href="/orders/create?" >Create new order
+        </a>
+    </div>
 
 </main>
 </body>

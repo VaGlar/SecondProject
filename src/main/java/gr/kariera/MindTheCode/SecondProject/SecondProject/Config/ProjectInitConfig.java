@@ -31,8 +31,8 @@ public class ProjectInitConfig {
         Category save2 = categoryRepository.save(new Category("furniture"));
 
 
-        List<Product> productList = List.of(new Product("chocolate", BigDecimal.valueOf(10),4,"itemexample.jpg",Set.of(new Category("food"))),
-                new Product("biscuit", BigDecimal.valueOf(8),12,"biscuit.jpg",Set.of(save1)),
+        List<Product> productList = List.of(new Product("chocolate", BigDecimal.valueOf(10),4,"chocolate.png",Set.of(new Category("food"))),
+                new Product("biscuit", BigDecimal.valueOf(8),12,"biscuit.png",Set.of(save1)),
                 new Product("pasta", BigDecimal.valueOf(2),50,"pasta.jpg",Set.of(save1)),
                 new Product("table", BigDecimal.valueOf(100),8,"table.jpg",Set.of(save2)),
                 new Product("chair", BigDecimal.valueOf(55),20,"chair.jpg",Set.of(save2)));

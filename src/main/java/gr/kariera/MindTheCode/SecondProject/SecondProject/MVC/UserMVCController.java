@@ -70,7 +70,7 @@ public class UserMVCController {
             return "redirect:/login";
         }
         user = userService.createUser(user);
-        return "redirect:/orders/index";
+        return "redirect:/products/index";
     }
 
     @RequestMapping(value="/update-user-info", method=RequestMethod.POST)

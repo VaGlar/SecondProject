@@ -1,6 +1,7 @@
 package gr.kariera.MindTheCode.SecondProject.SecondProject.MVC;
 
 import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.CreateOrderWrapper;
+import gr.kariera.MindTheCode.SecondProject.SecondProject.DTOs.OrdersWithProductsDetails;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Order;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.OrderProduct;
 import gr.kariera.MindTheCode.SecondProject.SecondProject.Entities.Product;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/orders")
@@ -37,16 +39,21 @@ public class OrderMVCController {
     @GetMapping("/index")
     public String greeting(
             @RequestParam(required = false) String address,
-            @RequestParam(required = false) BigDecimal totalPrice,
+//            @RequestParam(required = false) BigDecimal totalPrice,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size,
             @RequestParam(defaultValue = "ASC", required = false) String sort,
             Model model
     ) {
-        model.addAttribute("orders", service.getAll());
+
+       List<OrdersWithProductsDetails> orders = service.getAll().stream().map(s -> new OrdersWithProductsDetails(s, service.findOrdersProduct(s))).collect(Collectors.toList());
+
+        model.addAttribute("orders", orders);
+//        model.addAttribute("orders",service.getAll());
         model.addAttribute("sort", sort);
         model.addAttribute("addresses", address);
-        model.addAttribute("totalPrice",totalPrice);
+//        model.addAttribute("totalPrice",service.calculateTotalPrice());
+
         return "order-table";
     }
 
@@ -74,6 +81,7 @@ public class OrderMVCController {
                 op.setQuantity(orderProduct.getQuantity().add(op.getQuantity()));
                 products.add(op);
                 a.setOrderProduct(products);
+                a.setTotalPrice(service.calculateTotalPrice(a));
                 orderRepository.save(a);
                 model.addAttribute("products",findProductsInOrder(a));
 
@@ -83,11 +91,11 @@ public class OrderMVCController {
         }
         products.add(orderProduct);
         a.setOrderProduct(products);
+        a.setTotalPrice(service.calculateTotalPrice(a));
         orderRepository.save(a);
         model.addAttribute("products",findProductsInOrder(a));
         return "redirect:/orders/index";
-//Todo find products by id from orderproducts grammi 65 pernw ola ta orders ara kai ta id
-        //Todo vazwta products sto model attributes
+
     }
 
     private List<Product> findProductsInOrder (Order order){
